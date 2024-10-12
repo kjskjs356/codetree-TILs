@@ -120,6 +120,7 @@ def MoveDear(x1, y1):
     minDist = 999999 # 최단거리 갱신용
     targetN, targetR, targetC = -1, 0, 0 # 차순위인 r값 c값 비교용
     for num, x2, y2 in santa:
+        if not survival[num]: continue
         dist = (x1 - x2) ** 2 + (y1 - y2) ** 2
         # 최단거리인 경우 개신
         if dist < minDist:
@@ -187,7 +188,6 @@ def MoveSanta(num):
             Crush(2, minDirect, num)
         else:
             area[nx][ny] = num
-
 
 # m 만큼 게임 턴 실시
 for i in range(m):
