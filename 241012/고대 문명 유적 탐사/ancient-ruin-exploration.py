@@ -65,6 +65,7 @@ def EraseBfs(a, b, num):
                 area[nx][ny] = 0
                 q.append((nx, ny))
 
+
 # 유물 탐색 함수
 def Search():
     maxCnt = 0
@@ -104,12 +105,12 @@ def Search():
                         tx, ty = x, y
                         eraseList = tempList
                     elif r == minRotate:
-                        if x < tx:
+                        if y < ty:
                             tx, ty = x, y
                             eraseList = tempList
-                        elif x == tx:
-                            if y < ty:
-                                ty = y
+                        elif y == ty:
+                            if x < tx:
+                                tx = x
                                 eraseList = tempList
     if not isSuccess: return
     # 최종 갱신된 값을 기준으로 점수 획득 후 회전 & 제거 작업
@@ -119,7 +120,6 @@ def Search():
     # 회전된 상태에서 연결된 유물 조각 제거(eraseList 이용해서 특정 좌표만 활용)
     for i ,j in eraseList:
         EraseBfs(i, j, area[i][j])
-
     # 빈 칸에 유적에 있는 번호 차례대로 넣고 유물 연쇄획득 반복, 더이상 안되면 멈춤
     flag = True
     while flag:
